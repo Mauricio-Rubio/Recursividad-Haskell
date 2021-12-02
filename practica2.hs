@@ -85,8 +85,10 @@ diferenciaSimetrica xs ys = [x | x <- xs, negacion (contiene ys x)] ++ [x | x <-
 ---- Conjunto Potencia
 conjuntoPotencia :: [a] -> [[a]]
 conjuntoPotencia [] = [[]]
-conjuntoPotencia (x:xs) = let conjuntoPotencia_xs = conjuntoPotencia xs
-              in conjuntoPotencia_xs++[(x:z) | z <- conjuntoPotencia_xs]
---Creamos una variable en donde se va a almacenar una lista definida por comprensión, y a que a su vez
+conjuntoPotencia (x:xs) = [x:ps | ps <- conjuntoPotencia xs] ++ conjuntoPotencia xs              
+-- La otra alternativa usando una variable sería: 
+-- conjuntoPotencia (x:xs) = let conjuntoPotencia_xs = conjuntoPotencia xs
+  --            in conjuntoPotencia_xs++[(x:z) | z <- conjuntoPotencia_xs]
+--En donde creamos una variable en donde se va a almacenar una lista definida por comprensión, y a que a su vez
 -- se le va a ir concatenando la misma variable, como en otros lenguajes: +=
 
